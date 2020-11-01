@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
         Permissions.Options options = new Permissions.Options()
                 .setRationaleDialogTitle("Ration")
                 .setRationaleDialogMessage("Ration Msg")
-                .setRationalePositiveBtn("Ration Btn")
+                .setRationalePositiveBtn("Ration posi")
                 .setRationaleNegativeBtn("Rat Neg")
 
                 .setSettingsDialogTitle("Dia")

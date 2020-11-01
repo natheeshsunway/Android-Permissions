@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -92,16 +93,47 @@ public class PermissionsActivity extends Activity {
                 }
             }
         };
-        new AlertDialog.Builder(this).setTitle(options.rationaleDialogTitle)
-                .setMessage(options.rationaleDialogMessage)
-                .setPositiveButton(options.rationalePositiveBtn, listener)
-                .setNegativeButton(options.rationaleNegativeBtn, listener)
-                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(options.rationaleDialogTitle);
+        builder.setMessage(options.rationaleDialogMessage);
+
+        final View customLayout = getLayoutInflater().inflate(
+                        R.layout.permission_dialog_box,
+                        null);
+        builder.setView(customLayout);
+
+        // add a button
+        builder.setPositiveButton(
+                options.rationalePositiveBtn,
+                new DialogInterface.OnClickListener() {
+
                     @Override
-                    public void onCancel(DialogInterface dialog) {
-                        deny();
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                Uri.fromParts("package", getPackageName(), null));
+                        startActivityForResult(intent, RC_SETTINGS);
                     }
-                }).create().show();
+                });
+        builder.setNegativeButton(options.rationaleNegativeBtn, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deny();
+            }
+        });
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                deny();
+            }
+        });
+
+        // create and show
+        // the alert dialog
+        AlertDialog dialog
+                = builder.create();
+        dialog.show();
+
     }
 
     @SuppressWarnings("NullableProblems")
@@ -163,29 +195,49 @@ public class PermissionsActivity extends Activity {
             return;
         }
         Permissions.log("Ask to go to settings.");
-        new AlertDialog.Builder(this).setTitle(options.settingsDialogTitle)
-                .setMessage(options.settingsDialogMessage)
-                .setPositiveButton(options.dialogPositiveBtn, new DialogInterface.OnClickListener() {
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(options.settingsDialogTitle);
+        builder.setMessage(options.settingsDialogMessage);
+
+        final View customLayout
+                = getLayoutInflater()
+                .inflate(
+                        R.layout.permission_dialog_box,
+                        null);
+        builder.setView(customLayout);
+
+        // add a button
+        builder.setPositiveButton(
+                options.dialogPositiveBtn,
+                new DialogInterface.OnClickListener() {
+
                     @Override
-                    @SuppressWarnings("InlinedAPI")
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                                 Uri.fromParts("package", getPackageName(), null));
                         startActivityForResult(intent, RC_SETTINGS);
                     }
-                })
-                .setNegativeButton(options.dialogNegativeBtn, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        deny();
-                    }
-                })
-                .setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        deny();
-                    }
-                }).create().show();
+                });
+        builder.setNegativeButton(options.dialogNegativeBtn, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deny();
+            }
+        });
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                deny();
+            }
+        });
+
+        // create and show
+        // the alert dialog
+        AlertDialog dialog
+                = builder.create();
+        dialog.show();
     }
 
     @Override
