@@ -85,21 +85,9 @@ public class PermissionsActivity extends Activity {
     }
 
     private void showRationale(String rationale) {
-        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (which == DialogInterface.BUTTON_POSITIVE) {
-                    requestPermissions(toArray(deniedPermissions), RC_PERMISSION);
-                } else {
-                    deny();
-                }
-            }
-        };
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle(options.rationaleDialogTitle);
-//        builder.setMessage(options.rationaleDialogMessage);
-
         final View customLayout = getLayoutInflater().inflate(
                         R.layout.permission_dialog_box,
                         null);
@@ -113,9 +101,10 @@ public class PermissionsActivity extends Activity {
         positiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                        Uri.fromParts("package", getPackageName(), null));
-                startActivityForResult(intent, RC_SETTINGS);
+//                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+//                        Uri.fromParts("package", getPackageName(), null));
+//                startActivityForResult(intent, RC_SETTINGS);
+                requestPermissions(toArray(deniedPermissions), RC_PERMISSION);
             }
         });
         Button negativeButton = (Button) customLayout.findViewById(R.id.permission_negative_action);
@@ -205,34 +194,35 @@ public class PermissionsActivity extends Activity {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(options.settingsDialogTitle);
-        builder.setMessage(options.settingsDialogMessage);
-
-        final View customLayout
-                = getLayoutInflater()
-                .inflate(
-                        R.layout.permission_dialog_box,
-                        null);
+        final View customLayout = getLayoutInflater().inflate(
+                R.layout.permission_dialog_box,
+                null);
         builder.setView(customLayout);
-
-        // add a button
-        builder.setPositiveButton(
-                options.dialogPositiveBtn,
-                new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                                Uri.fromParts("package", getPackageName(), null));
-                        startActivityForResult(intent, RC_SETTINGS);
-                    }
-                });
-        builder.setNegativeButton(options.dialogNegativeBtn, new DialogInterface.OnClickListener() {
+        TextView title=(TextView)customLayout.findViewById(R.id.permission_title);
+        title.setText(options.settingsDialogTitle);
+        TextView subject=(TextView)customLayout.findViewById(R.id.permission_subjects);
+        subject.setText(options.settingsDialogMessage);
+        Button positiveButton = (Button) customLayout.findViewById(R.id.permission_positive_action);
+        positiveButton.setText(options.dialogPositiveBtn);
+        positiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                        Uri.fromParts("package", getPackageName(), null));
+                startActivityForResult(intent, RC_SETTINGS);
+//                requestPermissions(toArray(deniedPermissions), RC_PERMISSION);
+            }
+        });
+        Button negativeButton = (Button) customLayout.findViewById(R.id.permission_negative_action);
+        negativeButton.setText(options.dialogNegativeBtn);
+        negativeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 deny();
             }
         });
+
+
         builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
