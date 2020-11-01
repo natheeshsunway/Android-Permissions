@@ -94,8 +94,8 @@ public class PermissionsActivity extends Activity {
         };
         new AlertDialog.Builder(this).setTitle(options.rationaleDialogTitle)
                 .setMessage(rationale)
-                .setPositiveButton(android.R.string.ok, listener)
-                .setNegativeButton(android.R.string.cancel, listener)
+                .setPositiveButton(options.dialogPositiveBtn, listener)
+                .setNegativeButton(options.dialogNegativeBtn, listener)
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
@@ -165,7 +165,7 @@ public class PermissionsActivity extends Activity {
         Permissions.log("Ask to go to settings.");
         new AlertDialog.Builder(this).setTitle(options.settingsDialogTitle)
                 .setMessage(options.settingsDialogMessage)
-                .setPositiveButton(options.settingsText, new DialogInterface.OnClickListener() {
+                .setPositiveButton(options.rationalePositiveBtn, new DialogInterface.OnClickListener() {
                     @Override
                     @SuppressWarnings("InlinedAPI")
                     public void onClick(DialogInterface dialog, int which) {
@@ -174,7 +174,7 @@ public class PermissionsActivity extends Activity {
                         startActivityForResult(intent, RC_SETTINGS);
                     }
                 })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                .setNegativeButton(options.rationaleNegativeBtn, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deny();

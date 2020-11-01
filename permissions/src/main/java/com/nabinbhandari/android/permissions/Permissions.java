@@ -158,6 +158,28 @@ public class Permissions {
         boolean sendBlockedToSettings = true;
         boolean createNewTask = false;
 
+        String rationalePositiveBtn = "R +";
+        String rationaleNegativeBtn = "R -";
+        String dialogNegativeBtn = "D -";
+        String dialogPositiveBtn = "D +";
+
+        public Options setRationalePositiveBtn(String rationalePositiveBtn) {
+            this.rationalePositiveBtn = rationalePositiveBtn;
+            return this;
+        }
+        public Options setRationaleNegativeBtn(String rationaleNegativeBtn) {
+            this.rationaleNegativeBtn = rationaleNegativeBtn;
+            return this;
+        }
+        public Options setDialogPositiveBtn(String dialogPositiveBtn) {
+            this.dialogPositiveBtn = dialogPositiveBtn;
+            return this;
+        }
+        public Options setDialogNegativeBtn(String dialogNegativeBtn) {
+            this.dialogNegativeBtn = dialogNegativeBtn;
+            return this;
+        }
+
         /**
          * Sets the button text for "settings" while asking user to go to settings.
          *
