@@ -46,8 +46,15 @@ public class MainActivity extends Activity {
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
         String rationale = "Please provide location permission so that you can ...";
         Permissions.Options options = new Permissions.Options()
-                .setRationaleDialogTitle("Info")
-                .setSettingsDialogTitle("Warning");
+                .setRationaleDialogTitle("Ration")
+                .setRationaleDialogMessage("Ration Msg")
+                .setRationalePositiveBtn("Ration Btn")
+                .setRationaleNegativeBtn("Rat Neg")
+
+                .setSettingsDialogTitle("Dia")
+                .setDialogPositiveBtn("Dia posi")
+                .setDialogNegativeBtn("dia neg")
+                .setSettingsDialogMessage("dia msg");
 
         Permissions.check(this, permissions, rationale, options, new PermissionHandler() {
             @Override

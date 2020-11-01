@@ -151,20 +151,29 @@ public class Permissions {
     public static class Options implements Serializable {
 
         String settingsText = "Settings";
-        String rationaleDialogTitle = "Permissions Required";
-        String settingsDialogTitle = "Permissions Required";
-        String settingsDialogMessage = "Required permission(s) have been set" +
-                " not to ask again! Please provide them from settings.";
+
+
         boolean sendBlockedToSettings = true;
         boolean createNewTask = false;
 
         String rationalePositiveBtn = "R +";
         String rationaleNegativeBtn = "R -";
+        String rationaleDialogTitle = "Permissions Required";
+        String rationaleDialogMessage = "Permissions Required";
+
+
         String dialogNegativeBtn = "D -";
         String dialogPositiveBtn = "D +";
+        String settingsDialogTitle = "Permissions Required";
+        String settingsDialogMessage = "Required permission(s) have been set" +
+                " not to ask again! Please provide them from settings.";
 
         public Options setRationalePositiveBtn(String rationalePositiveBtn) {
             this.rationalePositiveBtn = rationalePositiveBtn;
+            return this;
+        }
+        public Options setRationaleDialogMessage(String rationaleDialogMessage) {
+            this.rationaleDialogMessage = rationaleDialogMessage;
             return this;
         }
         public Options setRationaleNegativeBtn(String rationaleNegativeBtn) {
