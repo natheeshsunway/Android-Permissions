@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
             public void onGranted() {
                 Toast.makeText(MainActivity.this, "Camera+Storage granted.", Toast.LENGTH_SHORT).show();
             }
-        });
+        }, MainActivity.this);
     }
 
     public void requestLocation(View view) {
@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
             public void onDenied(Context context, ArrayList<String> deniedPermissions) {
                 Toast.makeText(MainActivity.this, "Location denied.", Toast.LENGTH_SHORT).show();
             }
-        });
+        },MainActivity.this);
     }
 
     public void openSettings(View view) {

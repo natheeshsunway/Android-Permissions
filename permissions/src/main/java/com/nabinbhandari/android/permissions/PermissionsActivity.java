@@ -31,11 +31,14 @@ public class PermissionsActivity extends Activity {
     static final String EXTRA_PERMISSIONS = "permissions";
     static final String EXTRA_RATIONALE = "rationale";
     static final String EXTRA_OPTIONS = "options";
+    static final String EXTRA_MAIN_ACTIVITY = "main activity";
 
     static PermissionHandler permissionHandler;
 
     private ArrayList<String> allPermissions, deniedPermissions, noRationaleList;
     private Permissions.Options options;
+
+    private  Activity mainActivity;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -51,6 +54,9 @@ public class PermissionsActivity extends Activity {
         getWindow().setStatusBarColor(0);
         allPermissions = (ArrayList<String>) intent.getSerializableExtra(EXTRA_PERMISSIONS);
         options = (Permissions.Options) intent.getSerializableExtra(EXTRA_OPTIONS);
+
+        mainActivity=intent.getParcelableExtra(EXTRA_MAIN_ACTIVITY);
+
         if (options == null) {
             options = new Permissions.Options();
         }
@@ -113,6 +119,7 @@ public class PermissionsActivity extends Activity {
             @Override
             public void onClick(View v) {
                deny();
+               mainActivity.finish();
             }
         });
 
@@ -121,6 +128,7 @@ public class PermissionsActivity extends Activity {
             @Override
             public void onCancel(DialogInterface dialog) {
                 deny();
+                mainActivity.finish();
             }
         });
 
@@ -219,6 +227,7 @@ public class PermissionsActivity extends Activity {
             @Override
             public void onClick(View v) {
                 deny();
+                mainActivity.finish();
             }
         });
 
@@ -227,6 +236,7 @@ public class PermissionsActivity extends Activity {
             @Override
             public void onCancel(DialogInterface dialog) {
                 deny();
+                mainActivity.finish();
             }
         });
 
@@ -241,7 +251,7 @@ public class PermissionsActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RC_SETTINGS && permissionHandler != null) {
             Permissions.check(this, toArray(allPermissions), null, options,
-                    permissionHandler);
+                    permissionHandler, mainActivity);
         }
         // super, because overridden method will make the handler null, and we don't want that.
         super.finish();
