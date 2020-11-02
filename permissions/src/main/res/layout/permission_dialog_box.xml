@@ -18,7 +18,7 @@
 
         android:textAllCaps="true"
 
-        android:textColor="@color/title"
+        android:textColor="@color/permission_title"
         android:textSize="18sp"
         tools:text="Title custom dialog" />
 
@@ -32,7 +32,7 @@
         android:layout_marginBottom="36dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:textColor="@color/subtitle_dark"
+        android:textColor="@color/permission_subtitle_dark"
         android:textSize="18sp"
         tools:text="Subtitle custom dialog" />
 
@@ -42,14 +42,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/permission_rounded_button"
         android:fontFamily="sans-serif-light"
         android:paddingStart="36dp"
         android:paddingTop="10dp"
         android:paddingEnd="36dp"
         android:paddingBottom="10dp"
         android:textAllCaps="true"
-        android:textColor="@color/white"
+        android:textColor="@color/permission_white"
         android:textSize="18sp"
         android:textStyle="bold|italic"
         tools:text="Yes">
@@ -67,7 +67,7 @@
         android:paddingTop="10dp"
         android:paddingEnd="36dp"
         android:paddingBottom="10dp"
-        android:textColor="@color/black"
+        android:textColor="@color/permission_black"
         android:textSize="14sp"
         android:textStyle="normal"
         tools:text="No">

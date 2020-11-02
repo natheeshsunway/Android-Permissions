@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/skyblue"/> <!-- this one is ths color of the Rounded Button -->
+    <solid android:color="@color/permission_skyblue"/> <!-- this one is ths color of the Rounded Button -->
     <corners
         android:bottomRightRadius="10dp"
         android:bottomLeftRadius="10dp"

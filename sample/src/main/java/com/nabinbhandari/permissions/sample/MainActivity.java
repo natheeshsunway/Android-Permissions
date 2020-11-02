@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
 
     public void requestLocation(View view) {
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
-        String rationale = "Please provide location permission so that you can ...";
+        String rationale = "Please provide all permission so that you can ...";
         Permissions.Options options = new Permissions.Options()
                 .setRationaleDialogTitle("Ration")
                 .setRationaleDialogMessage("Ration Msg")

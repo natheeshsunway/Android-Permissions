@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="title">#3F4A58</color>
-    <color name="subtitle_dark">#757E90</color>
-    <color name="subtitle_light">#A2AFC0</color>
-    <color name="white">#FFFFFF</color>
+    <color name="permission_title">#3F4A58</color>
+    <color name="permission_subtitle_dark">#757E90</color>
+    <color name="permission_subtitle_light">#A2AFC0</color>
+    <color name="permission_white">#FFFFFF</color>
 
-    <color name="detail_pink">#F52C82</color>
-    <color name="detail_blue">#58B2FE</color>
-    <color name="skyblue">#3ACCE1</color>
-    <color name="black">#454F63</color>
+    <color name="permission_detail_pink">#F52C82</color>
+    <color name="permission_detail_blue">#58B2FE</color>
+    <color name="permission_skyblue">#3ACCE1</color>
+    <color name="permission_black">#454F63</color>
 </resources>

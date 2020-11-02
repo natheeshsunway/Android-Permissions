@@ -36,7 +36,7 @@ public abstract class PermissionHandler {
             }
             Permissions.log(builder.toString());
         }
-        Toast.makeText(context, "Permission Denied.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Permission Deniededdd.", Toast.LENGTH_SHORT).show();
     }
 
     /**
