@@ -113,6 +113,7 @@ public class PermissionsActivity extends Activity {
             @Override
             public void onClick(View v) {
                deny();
+               finish();
             }
         });
 
@@ -121,6 +122,7 @@ public class PermissionsActivity extends Activity {
             @Override
             public void onCancel(DialogInterface dialog) {
                 deny();
+                finish();
             }
         });
 
@@ -219,6 +221,7 @@ public class PermissionsActivity extends Activity {
             @Override
             public void onClick(View v) {
                 deny();
+                finish();
             }
         });
 
@@ -227,6 +230,7 @@ public class PermissionsActivity extends Activity {
             @Override
             public void onCancel(DialogInterface dialog) {
                 deny();
+                finish();
             }
         });
 
