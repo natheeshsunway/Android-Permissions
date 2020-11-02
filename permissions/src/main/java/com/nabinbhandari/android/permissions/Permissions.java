@@ -1,11 +1,9 @@
 package com.nabinbhandari.android.permissions;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Parcelable;
 import android.util.Log;
 
 import java.io.Serializable;
@@ -50,8 +48,8 @@ public class Permissions {
      *                   actions such as permission granted, permission denied, etc.
      */
     public static void check(Context context, String permission, String rationale,
-                             PermissionHandler handler,Activity activity) {
-        check(context, new String[]{permission}, rationale, null, handler, activity);
+                             PermissionHandler handler) {
+        check(context, new String[]{permission}, rationale, null, handler);
     }
 
     /**
@@ -66,28 +64,29 @@ public class Permissions {
      *                    actions such as permission granted, permission denied, etc.
      */
     public static void check(Context context, String permission, int rationaleId,
-                             PermissionHandler handler,Activity activity) {
+                             PermissionHandler handler) {
         String rationale = null;
         try {
             rationale = context.getString(rationaleId);
         } catch (Exception ignored) {
         }
-        check(context, new String[]{permission}, rationale, null, handler, activity);
+        check(context, new String[]{permission}, rationale, null, handler);
     }
 
     /**
      * Check/Request permissions and call the callback methods of permission handler accordingly.
-     *  @param context     Android context.
+     *
+     * @param context     Android context.
      * @param permissions The array of one or more permission(s) to request.
      * @param rationale   Explanation to be shown to user if s/he has denied permission earlier.
- *                    If this parameter is null, permissions will be requested without showing
- *                    the rationale dialog.
+     *                    If this parameter is null, permissions will be requested without showing
+     *                    the rationale dialog.
      * @param options     The options for handling permissions.
      * @param handler     The permission handler object for handling callbacks of various user
-     * @param mainActivity
+     *                    actions such as permission granted, permission denied, etc.
      */
     public static void check(final Context context, String[] permissions, String rationale,
-                             Options options, final PermissionHandler handler, Activity mainActivity) {
+                             Options options, final PermissionHandler handler) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             handler.onGranted();
             log("Android version < 23");
@@ -115,9 +114,7 @@ public class Permissions {
                 Intent intent = new Intent(context, PermissionsActivity.class)
                         .putExtra(PermissionsActivity.EXTRA_PERMISSIONS, permissionsList)
                         .putExtra(PermissionsActivity.EXTRA_RATIONALE, rationale)
-                        .putExtra(PermissionsActivity.EXTRA_OPTIONS, options)
-                        .putExtra(PermissionsActivity.EXTRA_MAIN_ACTIVITY, (Parcelable) mainActivity);
-
+                        .putExtra(PermissionsActivity.EXTRA_OPTIONS, options);
                 if (options != null && options.createNewTask) {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 }
@@ -139,13 +136,13 @@ public class Permissions {
      *                    actions such as permission granted, permission denied, etc.
      */
     public static void check(final Context context, String[] permissions, int rationaleId,
-                             Options options, final PermissionHandler handler,Activity activity) {
+                             Options options, final PermissionHandler handler) {
         String rationale = null;
         try {
             rationale = context.getString(rationaleId);
         } catch (Exception ignored) {
         }
-        check(context, permissions, rationale, options, handler,activity );
+        check(context, permissions, rationale, options, handler);
     }
 
     /**
